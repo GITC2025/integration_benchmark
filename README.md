@@ -4,7 +4,7 @@ _figuring out the HPC, babysitting the downloads, and benchmarking integration â
 
 **Using Positron to have an all-in-one environment for SSH connection to HPC, run R in Apptainer, use Python natively etc.**
 
-**Dataset 1**
+# Dataset 1
 
 Lai, H., Cheng, X., Liu, Q., Luo, W., Liu, M., Zhang, M., Miao, J., Ji, Z., Lin, G. N., Song, W., Zhang, L., Bo, J., Yang, G., Wang, J., & Gao, W. Q. (2021). Single-cell RNA sequencing reveals the epithelial cell heterogeneity and invasive subpopulation in human bladder cancer. International journal of cancer, 149(12), 2099â€“2115. https://doi.org/10.1002/ijc.33794
 
@@ -187,6 +187,7 @@ SRR14615558_2.fastq.gz  FASTQ   DNA   374,150,612  56,496,742,412      151      
 
 ```bash
 # all vdb dump SEQ info per unique SRR, parallel 8
+# check this code, only 5 showed up 
 module load edirect/20.9.20231210
 module load sra-toolkit/3.0.9
 
@@ -258,8 +259,11 @@ tail -n 8 SRR12539462_*.fastq.gz
 * https://people.duke.edu/~ccc14/duke-hts-2018/bioinformatics/quality_scores.html
 
 ***
+# Dataset 2
 
-**Do the same for dataset 2: 4 samples of 2x pri BCa, 1 recurrent BCa and one cystitis glandularis**
+**4 samples total
+
+2x pri BCa, 1 recurrent BCa and one cystitis glandularis**
 
 Luo, Y., Tao, T., Tao, R., Huang, G., & Wu, S. (2022). Single-Cell Transcriptome Comparison of Bladder Cancer Reveals Its Ecosystem. Frontiers in oncology, 12, 818147. https://doi.org/10.3389/fonc.2022.818147
 
