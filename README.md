@@ -186,26 +186,23 @@ SRR14615558_2.fastq.gz  FASTQ   DNA   374,150,612  56,496,742,412      151      
 ```
 
 ```bash
-# load metadata for one SRR
-# all vdb dump per unique SRR, parallel 8
-# the cut _ command ensures one vdb dump per unique SRR 
-module load sra-toolkit/3.0.9
-printf "%s\n" *.fastq.gz | \
-cut -d'_' -f1 | \
-sort -u | \
-while read run; do
-vdb-dump --info "$run"
-done
-
-# load metadata for entire study (SRPxxxx)
+# all vdb dump SEQ info per unique SRR, parallel 8
 module load edirect/20.9.20231210
 module load sra-toolkit/3.0.9
 
-# loop
-esearch -db sra -query SRP217277 | efetch -format runinfo | cut -d ',' -f 1 | grep "^SRR" | while read -r SRR; do
-  echo -e "\n >>> ACCESSION: $SRR <<<"
-  vdb-dump --info "$SRR"
-  done
+mkdir -p vdb_tmp
+esearch -db sra -query SRP217277 | \
+efetch -format runinfo | \
+cut -d ',' -f 1 | \
+grep "^SRR" | \
+xargs -P 8 -I {} \
+sh -c '{ echo -e "\n ACCESSION: {}"; vdb-dump --info "{}"; } > vdb_tmp/{}.txt'
+
+ls vdb_tmp/*.txt | sort -V | xargs cat
+rm -rf vdb_tmp
+
+# output
+
 ```
 
 ```yaml
