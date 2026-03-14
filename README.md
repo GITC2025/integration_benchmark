@@ -159,13 +159,43 @@ FASTQ checks
 * check num_seqs against vdp dump metadata SEQ with code for longer lists
 
 ```yaml
-# dataset 1 GSE135337 seqkit check
+# dataset 1 seqkit check
+seqkit stat -j 8 ./*.fastq.gz
+
+# dataset 1 GSE135337 seqkit check output
+[mii] loading StdEnv/2023 seqkit/2.5.1 ...
+processed files:  16 / 16 [======================================] ETA: 0s. done
+file                    format  type     num_seqs         sum_len  min_len  avg_len  max_len
+SRR9897621_1.fastq.gz   FASTQ   DNA   351,909,721   9,149,652,746       26       26       26
+SRR9897621_2.fastq.gz   FASTQ   DNA   351,909,721  53,138,367,871      151      151      151
+SRR9897622_1.fastq.gz   FASTQ   DNA   373,103,899   9,700,701,374       26       26       26
+SRR9897622_2.fastq.gz   FASTQ   DNA   373,103,899  56,338,688,749      151      151      151
+SRR9897623_1.fastq.gz   FASTQ   DNA   168,058,967   4,369,533,142       26       26       26
+SRR9897623_2.fastq.gz   FASTQ   DNA   168,058,967  25,376,904,017      151      151      151
+SRR9897624_1.fastq.gz   FASTQ   DNA   374,515,865   9,737,412,490       26       26       26
+SRR9897624_2.fastq.gz   FASTQ   DNA   374,515,865  56,551,895,615      151      151      151
+SRR9897625_1.fastq.gz   FASTQ   DNA   307,211,122   7,987,489,172       26       26       26
+SRR9897625_2.fastq.gz   FASTQ   DNA   307,211,122  46,388,879,422      151      151      151
+SRR12539462_1.fastq.gz  FASTQ   DNA   359,075,221   9,335,955,746       26       26       26
+SRR12539462_2.fastq.gz  FASTQ   DNA   359,075,221  54,220,358,371      151      151      151
+SRR12539463_1.fastq.gz  FASTQ   DNA   367,846,395   9,564,006,270       26       26       26
+SRR12539463_2.fastq.gz  FASTQ   DNA   367,846,395  55,544,805,645      151      151      151
+SRR14615558_1.fastq.gz  FASTQ   DNA   374,150,612   9,727,915,912       26       26       26
+SRR14615558_2.fastq.gz  FASTQ   DNA   374,150,612  56,496,742,412      151      151      151
 
 ```
 
 ```bash
 # load metadata for one SRR
-vdb-dump --info SRR12539462
+# all vdb dump per unique SRR, parallel 8
+# the cut _ command ensures one vdb dump per unique SRR 
+module load sra-toolkit/3.0.9
+printf "%s\n" *.fastq.gz | \
+cut -d'_' -f1 | \
+sort -u | \
+while read run; do
+vdb-dump --info "$run"
+done
 
 # load metadata for entire study (SRPxxxx)
 module load edirect/20.9.20231210
