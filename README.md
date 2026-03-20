@@ -418,11 +418,12 @@ md5 checksum
 
 1. raw QC - FastQC.MultiQC
 2. Align and quantify - CellRanger
-3. Normalization and feature selection - SCTrasnform, ID HVGs (2000 highly variable genes)
-4. Dimension reduction - PCA, scree plot to check to find where PC levels off, stop when PC# covers 70-90% of variance
-5. Integration benchmarking here - control vs scArch vs Harmony etc. benchmark across diff categories of tools
+3. QC with sctk
+4. Normalization and feature selection - SCTrasnform, ID HVGs (2000 highly variable genes)
+5. Dimension reduction - PCA, scree plot to check to find where PC levels off, stop when PC# covers 70-90% of variance
+6. Integration benchmarking here - control vs scArch vs Harmony etc. benchmark across diff categories of tools
         *evaluate against ASQ, ARI, LISI etc.
-6. UMAP as qualitative benchmark - set seed, try out diff seeds, try out diff k's to find stability and convergence
+7. UMAP as qualitative benchmark - set seed, try out diff seeds, try out diff k's to find stability and convergence
 6b. Findmarkers Seurat for biological grounding
 
 # PCA in a nutshell
