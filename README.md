@@ -216,7 +216,6 @@ FFFF,F:F:FFFFFFFF:FFFFFFFFFFFF,FF:FFF:FF,FFF,FFF,,F,,,,,FF,F:,:FF,:F,,,,,,,,,,,,
 * fastq 1 contains barcodes and UMIs
 * each line is followed by quality score line (Phred 33 in this case - auto detected by fastQC tool later)
 
-```
 
 | File                     | Content                                                         | Length (10X Genomics)|
 | ------------------------ | --------------------------------------------------------------- | ---------------------|
