@@ -86,7 +86,7 @@ find . -maxdepth 1 -type f -name '*.fastq.gz' -print0 \
   && mv ENA_GSE_checksums.md5.tmp ENA_GSE_checksums.md5
 echo "Checksum generation complete."
 ```
-# checksum match
+## checksum match
 
 ```bash
 # download ENA original checksum
@@ -147,7 +147,7 @@ d132d15355b72345fdd8f3b27169a87d  SRR9897624_1.fastq.gz
 859854cd12660fefed73e4e94ce17354  SRR9897625_1.fastq.gz
 9267d8354cb2c141d52f8ce4d5c8cebd  SRR9897625_2.fastq.gz
 ```
-# dataset 1 md5 checksum 
+## dataset 1 md5 checksum 
 
 **[shell fxn shortcut below](#md5check-shortcut)**
 ```bash
@@ -183,7 +183,7 @@ SRR9897624_2.fastq.gz MATCH
 SRR9897625_1.fastq.gz MATCH
 SRR9897625_2.fastq.gz MATCH
 ```
-# seqkit check
+## seqkit check
 
 * all num_seqs for same SRR should be exactly the same - paired end reads
 * later files being _2 and _3 : it happened that _1.fastq was an index read (library tag) and was discarded
@@ -216,7 +216,7 @@ SRR14615558_1.fastq.gz  FASTQ   DNA   374,150,612   9,727,915,912       26      
 SRR14615558_2.fastq.gz  FASTQ   DNA   374,150,612  56,496,742,412      151      151      151
 
 ```
-# check 8 lines
+## check 8 lines
 ```bash
 for f in *.fastq.gz; do
   echo "$f"
@@ -298,7 +298,7 @@ md5sum *.fastq.gz > downloaded_checksums.md5
 echo "Checksum generation complete."
 
 ```
-# dataset 2 md5 checksum 
+## dataset 2 md5 checksum 
 
 ([shell fxn shortcut below](#md5check-shortcut))
 
@@ -371,7 +371,7 @@ SRR17259465_1.fastq.gz MATCH
 SRR17259465_2.fastq.gz MATCH
 ```
 
-# seqkit check for pairs num seq match
+## seqkit check for pairs num seq match
 
 ```
 module load StdEnv/2023 seqkit/2.5.1
@@ -399,7 +399,7 @@ SRR17259465_2.fastq.gz  FASTQ   DNA   464,865,330   69,729,799,500      150     
 
 check against metadata if you wish
 
-# Run fastqc on fastq.gz
+## Run fastqc on fastq.gz
 * Reports per-base quality scores across read length (boxplots of Phred scores).
 * Checks per-sequence quality (distribution of mean quality per read).
 * Assesses GC content distribution vs expected
@@ -461,7 +461,7 @@ find . -type f -name "*.fastq.gz" -print0 \
 
 realpath SRPfastqc_out
 ```
-# download FastQC html reports - from local console
+## download FastQC html reports - from local console
 ```bash
 scp -r YOUR_USERNAME@YOUR_SERVER_ADDRESS:/PATH/TO/REMOTE/FOLDER ./LOCAL_DESTINATION_FOLDER
 ```
@@ -469,7 +469,7 @@ scp -r YOUR_USERNAME@YOUR_SERVER_ADDRESS:/PATH/TO/REMOTE/FOLDER ./LOCAL_DESTINAT
 
 <img width="900" height="400" alt="image" src="https://github.com/user-attachments/assets/5df125c0-8775-46ef-84f7-c79a1c5c739c" />
 
-# Fastqc_data.txt parsing Dataset 1
+## Fastqc_data.txt parsing Dataset 1
 
 the txt are in the zip folders
 
@@ -615,7 +615,7 @@ SRR17259465_2_fastqc_fastqc_data.txt    Per sequence GC content warn
 SRR17259465_2_fastqc_fastqc_data.txt    Overrepresented sequences       warn
 ```
 
-# Reading FastQC output
+## Reading FastQC output
 <img width="650" height="85" alt="image" src="https://github.com/user-attachments/assets/cc260527-b231-4c35-a77b-4affb4f2dbc9" />
 
 Illumina 1.9 = Phred +33
@@ -677,7 +677,7 @@ Illumina 1.9 = Phred +33
 
 ***
 
-# Chemistry in brief
+## Chemistry in brief
 * v2 dominant prior to 2018 (16 + 10)
 * post 2018 - v3 and 3.1 (16 + 12)
 * 2023 onwards - v4 (16 + 12)
@@ -696,7 +696,7 @@ v4 doc https://teichlab.github.io/scg_lib_structs/data/10X-Genomics/CG000731_Chr
 https://teichlab.github.io/scg_lib_structs/data/10X-Genomics/10x_LIT000220_Product_Sheet_GEM-X-Single-Cell-Gene-Expression_Letter_Digital.pdf
 
 ***
-# zcat Dataset 1 
+## zcat Dataset 1 
 
 * [zcat shortcuts](#zcat-check-chemistry)
 
@@ -725,7 +725,7 @@ SRR9897624_1.fastq.gz:
 SRR9897625_1.fastq.gz:
 26
 ```
-# zcat Dataset 2
+## zcat Dataset 2
 
 ```bash
 # use shortcut
@@ -769,7 +769,7 @@ SRR17259465_2.fastq.gz:
 * since we don't have lane number info we use placeholder L001
 * modern workflows merge lanes by default (Illumina `bcl2fastq` with the `--no-lane-splitting` option)
 
-**dataset 1: rename fastq.gz files for cellranger via symlinks**
+## dataset 1: rename fastq.gz files for cellranger via symlinks
 
 ```bash
 # create new subfolder w/ symlink names formatted for cellranger
@@ -815,7 +815,7 @@ echo "alias myalias='command here'" >> ~/.bashrc
 source ~/.bashrc
 ```
 
-# bind shell fxns
+## bind shell fxns
 ```bash
 cat >> ~/.bashrc <<'EOF'
 
@@ -828,7 +828,7 @@ EOF
 source ~/.bashrc
 ```
 
-# md5check shortcut
+## md5check shortcut
 ```bash
 md5check() {
   local local_file="${1:-localchecksumfile.md5}"
@@ -853,7 +853,7 @@ md5check() {
 md5check localchecksumfile.md5 targetchecksumfile.md5
 ```
 
-# unzipfastq shortcut
+## unzipfastq shortcut
 ```bash
 # unzip fastq.zip and move fastqc txt into current folder
 cat >> ~/.bashrc <<'EOF'
@@ -879,7 +879,7 @@ source ~/.bashrc
 ```
 
 
-# FastQC txt parser shortcut
+## FastQC txt parser shortcut
 ```bash
 fastqcfail() {
   shopt -s nullglob
@@ -917,7 +917,7 @@ fastqcwarn() {
 fastqcfail
 fastqcwarn
 ```
-# zcat check chemistry
+## zcat check chemistry
 ```bash
 # check zcatR1
 cat >> ~/.bashrc <<'EOF'
