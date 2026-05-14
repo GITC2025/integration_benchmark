@@ -19,11 +19,11 @@ Part One: Data acquisition, alignment and QC
 ├──2. FastQC
 ├──3. Alignment: zcat check chemistry, Cellranger dataset 1 + Celescope dataset 2 (2 runs)
 	├── Cellranger QC check (done) + celescope QC check (done)
-	├── dataset 2 requires background removal (ongoing)
+	├── dataset 2 requires background removal (done)
 ├──4. QC with sctk apptainer or traditional multi-step QC
-	├── build custom campbio singlecellTK container for latest version (done, debugging continues)
+	├── build custom campbio singlecellTK container (done)
 	├── Seurat V5 QC Dataset 1 (done)
-	├── Seurat V5 QC Dataset 2 
+	├── Seurat V5 QC Dataset 2 (ongoing)
 
 Bridge
 ├──5. Normalization and Feature selection (HVGs): SCTransform (predictive modeling method) (ongoing)
